@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Structure:</strong>
+  <%= @structure_analysis.structure %>
+</p>
+
+<p>
+  <strong>Analysis:</strong>
+  <%= @structure_analysis.analysis %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @structure_analysis.price %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @structure_analysis.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @structure_analysis.user %>
+</p>
+
+<%= link_to 'Edit', edit_structure_analysis_path(@structure_analysis) %> |
+<%= link_to 'Back', structure_analyses_path %>

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Structure Analyses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Structure</th>
+      <th>Analysis</th>
+      <th>Price</th>
+      <th>Status</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @structure_analyses.each do |structure_analysis| %>
+      <tr>
+        <td><%= structure_analysis.structure %></td>
+        <td><%= structure_analysis.analysis %></td>
+        <td><%= structure_analysis.price %></td>
+        <td><%= structure_analysis.status %></td>
+        <td><%= structure_analysis.user %></td>
+        <td><%= link_to 'Show', structure_analysis %></td>
+        <td><%= link_to 'Edit', edit_structure_analysis_path(structure_analysis) %></td>
+        <td><%= link_to 'Destroy', structure_analysis, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Structure Analysis', new_structure_analysis_path %>

@@ -1,0 +1,21 @@
+<tr class="nested-fields">
+
+    
+    <td>
+        <%= f.collection_select(:structure_id, @structures,  :id, :name , {prompt: "Sélectionner une structure"}, class: "form-control", style: "width: 100%", required: true) %>
+
+    </td>
+    <td>
+        <%= f.text_field :consultation_price, class: "form-control", placeholder: "Prix de consultation", required: true %>
+    </td>
+     
+    <td>
+      
+    <%= link_to_remove_association raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), f, class: 'delete' %>
+  
+    </td>
+
+
+
+</tr>

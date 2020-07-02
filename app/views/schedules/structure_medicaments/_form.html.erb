@@ -1,0 +1,42 @@
+<%= form_with(model: structure_medicament, local: true) do |form| %>
+  <% if structure_medicament.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(structure_medicament.errors.count, "error") %> prohibited this structure_medicament from being saved:</h2>
+
+      <ul>
+      <% structure_medicament.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :structure_id %>
+    <%= form.text_field :structure_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :medicament_id %>
+    <%= form.text_field :medicament_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

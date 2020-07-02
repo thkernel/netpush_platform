@@ -1,0 +1,50 @@
+<%= form_with(model: schedule, local: true) do |form| %>
+  <% if schedule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
+
+      <ul>
+      <% schedule.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Fieldset informations -->
+      <fieldset>
+        <div class="row">
+          <div class="prescription-items">
+
+            <table class="table  responsive ">
+              <thead>
+                <tr role="row">
+                
+                   <th>Jour</th>
+                   <th>Heure début</th>
+                   <th>Heure fin</th>
+                </tr>
+              </thead>
+                <tbody class="items">
+                  <%= form.fields_for :schedule_items do |item| %>
+                      <%= render 'schedule_item_fields', f: item %>
+                  <% end %>
+                </tbody>
+            </table>
+          
+          </div> 
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= link_to_add_association raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter'), form, :schedule_items, class: 'btn btn-primary', data: { association_insertion_node: '.items', association_insertion_method: :append } %>
+            </div>
+          </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="form-group">
+    <%= form.submit  class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+  </div>
+<% end %>
