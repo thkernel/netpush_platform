@@ -1,0 +1,96 @@
+<%= form_with(model: order_card, local: true) do |form| %>
+  <div class="form-content">
+  <% if order_card.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order_card.errors.count, "error") %> prohibited this order_card from being saved:</h2>
+
+      <ul>
+      <% order_card.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :first_name, "Prénom", class: "required" %>
+        <%= form.text_field :first_name, class: "form-control", placeholder: "Prénom", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :last_name , "Nom", class: "required" %>
+        <%= form.text_field :last_name, class: "form-control", placeholder: "Nom", require: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :country, "Pays", class: "required" %>
+        <%= form.text_field :country, class: "form-control", placeholder: "Pays", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :city, "Ville", class: "required" %>
+        <%= form.text_field :city, class: "form-control", placeholder: "Ville", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :address, "Adresse" %>
+        <%= form.text_field :address, class: "form-control", placeholder: "Adresse" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :phone_number, "Téléphone", class: "required" %>
+        <%= form.text_field :phone_number, class: "form-control", placeholder: "Téléphone", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="form-group">
+        <%= form.label :email, "Email" %>
+        <%= form.email_field :email, class: "form-control", placeholder: "Email" %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="form-group">
+        <%= form.label :attachments, "Pièce jointe" %>
+        <%= form.file_field :attachments %>
+      </div>
+    </div>
+
+  
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.label :notes, "Notes" %>
+        <%= form.text_area :notes, class: "form-control", placeholder: "Notes" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit "Valider", class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+  </div>
+</div>
+<% end %>

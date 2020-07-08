@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><%= "Tableau de bord - Imofy " %></title>	
+		<title><%= "Tableau de bord - #{APPLICATION_NAME}" %></title>	
     	<%= csrf_meta_tags %>
 		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -11,22 +11,22 @@
 
 	</head>
 
-  <body >
+  	<body>
 		
 		<%= render :partial => 'layouts/partials/flash_messages', :flash => flash %>
 		<!-- Left Sidebar -->
 			<%= render('layouts/partials/dashboard/header') %>
 
 		<!-- End Left sidebar -->
-<%= render('layouts/partials/dashboard/sidebar') %>
+		<%= render('layouts/partials/dashboard/sidebar') %>
 		<div class="br-mainpanel">
 				
 
-					<%= yield %>
+			<%= yield %>
 				  
 
 		</div>
-	  <%= render('layouts/partials/dashboard/footer') %>
+	  
 
 	
   </body>

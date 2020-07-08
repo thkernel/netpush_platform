@@ -1,6 +1,12 @@
 module ApplicationHelper
 
 
+
+	def count_contact(contact_book_id)
+		contact_book = ContactBook.find(contact_book_id)
+		contacts = contact_book.contacts.count
+	end
+	
   def user_avatar(user, alt_tag, class_name)
 		profile = user.profile
 

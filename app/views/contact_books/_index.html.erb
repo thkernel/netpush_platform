@@ -1,0 +1,18 @@
+<% @contact_books.each do |contact_book| %>
+  <tr>
+    <td><%= contact_book.name %></td>
+    <td><%= count_contact(contact_book.id) %></td>
+   <td>
+            <div class="action-buttons">
+                    <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'), edit_contact_book_path(contact_book), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), contact_book_delete_path(contact_book), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+        </td>
+  </tr>
+<% end %>

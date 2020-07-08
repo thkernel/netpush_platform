@@ -1,0 +1,42 @@
+<%= form_with(model: campaign_contactbook, local: true) do |form| %>
+  <% if campaign_contactbook.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(campaign_contactbook.errors.count, "error") %> prohibited this campaign_contactbook from being saved:</h2>
+
+      <ul>
+      <% campaign_contactbook.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :uuid %>
+    <%= form.text_field :uuid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact_book_id %>
+    <%= form.text_field :contact_book_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :campaign_id %>
+    <%= form.text_field :campaign_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

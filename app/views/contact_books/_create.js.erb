@@ -1,0 +1,11 @@
+$("ul.errors").html("");
+<% if @contact_book.errors.any? %>
+  <% @contact_book.errors.full_messages.each do |message| %>
+ 
+    $("ul.errors").append($('<div class="c-alert c-alert--danger" > ').html("<%= message.html_safe %> "));
+  <% end %>
+<% else %>
+  $(".contact_books").html("<%= escape_javascript(render 'index') %>");
+  $("#contact-book-modal").modal("hide");
+ 
+<% end %>

@@ -21,7 +21,7 @@ set :port, 3031
 
  set :nginx_config_name, "netpush_platform.prod"
  set :nginx_server_name, "netpush_platform.prod"
- set :puma_workers, 1
+ set :puma_workers, 2
 
 # role-based syntax
 # ==================

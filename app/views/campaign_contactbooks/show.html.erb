@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uuid:</strong>
+  <%= @campaign_contactbook.uuid %>
+</p>
+
+<p>
+  <strong>Contact book:</strong>
+  <%= @campaign_contactbook.contact_book %>
+</p>
+
+<p>
+  <strong>Campaign:</strong>
+  <%= @campaign_contactbook.campaign %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @campaign_contactbook.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @campaign_contactbook.user %>
+</p>
+
+<%= link_to 'Edit', edit_campaign_contactbook_path(@campaign_contactbook) %> |
+<%= link_to 'Back', campaign_contactbooks_path %>

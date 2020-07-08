@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @order_card.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @order_card.last_name %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @order_card.country %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @order_card.city %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @order_card.address %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @order_card.phone_number %>
+</p>
+
+<p>
+  <strong>Card type:</strong>
+  <%= @order_card.card_type %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @order_card.quantity %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @order_card.status %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @order_card.note %>
+</p>
+
+<%= link_to 'Edit', edit_order_card_path(@order_card) %> |
+<%= link_to 'Back', order_cards_path %>

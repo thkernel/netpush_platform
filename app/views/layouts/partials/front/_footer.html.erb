@@ -4,8 +4,7 @@
 			<div class="col-md-3 footer-widget">
 				<h4 class="footer-widget-title">A propos</h4>
 				<p class="footer-widget-content">
-					Imofy est une plateforme web et mobile qui permet de mettre en relation les propriétaires et locataires de biens immobiliers partout à travers le monde.
-				</p>
+					
 			</div>
 			<div class="col-md-1 footer-widget">
 			</div>
@@ -17,9 +16,9 @@
 				<div class="footer-widget-content">
 					<ul>
 						<li><%= link_to "Services", root_path %></li>
-						<li><%= link_to "Publicité", advertise_path %></li>
-						<li><%= link_to "Contact", contact_path %></li>
-						<li><%= link_to "Partenaires", partnaires_path %></li>
+						<li><%= link_to "Publicité", root_path %></li>
+						<li><%= link_to "Contact", root_path %></li>
+						<li><%= link_to "Partenaires", root_path %></li>
 					</ul>
 				</div>
 			</div><!-- end -->
@@ -42,7 +41,7 @@
 
 		<div class="row">
 			<div class="col-md-6 copyright">
-				&copy;<%= Time.now.year %> Imofy - Tout droits réservés
+				&copy;<%= Time.now.year %> Netpush Technologies S.A.R.L - Tout droits réservés
 			</div>
 
 			<div class="col-md-6">
@@ -71,4 +70,3 @@
 
 	</div>
 </div>
-<%= render 'cookies_eu/consent_banner' %>

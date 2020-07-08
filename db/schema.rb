@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_114903) do
+ActiveRecord::Schema.define(version: 2020_07_07_172610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,92 @@ ActiveRecord::Schema.define(version: 2020_05_04_114903) do
     t.index ["user_id"], name: "index_api_keys_on_user_id"
   end
 
+  create_table "campaign_contactbooks", force: :cascade do |t|
+    t.string "uuid"
+    t.bigint "contact_book_id"
+    t.bigint "campaign_id"
+    t.string "status"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_campaign_contactbooks_on_campaign_id"
+    t.index ["contact_book_id"], name: "index_campaign_contactbooks_on_contact_book_id"
+    t.index ["user_id"], name: "index_campaign_contactbooks_on_user_id"
+  end
+
+  create_table "campaigns", force: :cascade do |t|
+    t.string "uuid"
+    t.string "title"
+    t.text "content"
+    t.datetime "start_date"
+    t.datetime "start_hour"
+    t.string "status"
+    t.boolean "start_immediatly"
+    t.text "notes"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_campaigns_on_user_id"
+  end
+
+  create_table "contact_books", force: :cascade do |t|
+    t.string "uuid"
+    t.string "name"
+    t.string "status"
+    t.string "slug"
+    t.text "description"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_contact_books_on_user_id"
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "uuid"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "gender"
+    t.string "main_phone_number"
+    t.string "email"
+    t.string "country"
+    t.string "city"
+    t.string "address"
+    t.string "status"
+    t.string "slug"
+    t.text "notes"
+    t.bigint "contact_book_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_book_id"], name: "index_contacts_on_contact_book_id"
+    t.index ["user_id"], name: "index_contacts_on_user_id"
+  end
+
+  create_table "order_cards", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "country"
+    t.string "city"
+    t.string "address"
+    t.string "phone_number"
+    t.string "email"
+    t.string "card_type"
+    t.integer "quantity"
+    t.string "status"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.text "uid"
+    t.bigint "user_id"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "permission_roles", force: :cascade do |t|
     t.bigint "role_id"
     t.bigint "permission_id"
@@ -67,6 +153,28 @@ ActiveRecord::Schema.define(version: 2020_05_04_114903) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "product_categories", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "status"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_product_categories_on_user_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.bigint "product_category_id"
+    t.string "name"
+    t.string "description"
+    t.string "status"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_category_id"], name: "index_products_on_product_category_id"
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -123,8 +231,19 @@ ActiveRecord::Schema.define(version: 2020_05_04_114903) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "api_keys", "users"
+  add_foreign_key "campaign_contactbooks", "campaigns"
+  add_foreign_key "campaign_contactbooks", "contact_books"
+  add_foreign_key "campaign_contactbooks", "users"
+  add_foreign_key "campaigns", "users"
+  add_foreign_key "contact_books", "users"
+  add_foreign_key "contacts", "contact_books"
+  add_foreign_key "contacts", "users"
+  add_foreign_key "orders", "users"
   add_foreign_key "permission_roles", "permissions"
   add_foreign_key "permission_roles", "roles"
+  add_foreign_key "product_categories", "users"
+  add_foreign_key "products", "product_categories"
+  add_foreign_key "products", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "users", "roles"
 end

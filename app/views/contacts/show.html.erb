@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uuid:</strong>
+  <%= @contact.uuid %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @contact.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @contact.last_name %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @contact.gender %>
+</p>
+
+<p>
+  <strong>Main phone number:</strong>
+  <%= @contact.main_phone_number %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @contact.email %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @contact.country %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @contact.city %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @contact.address %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @contact.status %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @contact.slug %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @contact.notes %>
+</p>
+
+<p>
+  <strong>Contact book:</strong>
+  <%= @contact.contact_book %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @contact.user %>
+</p>
+
+<%= link_to 'Edit', edit_contact_path(@contact) %> |
+<%= link_to 'Back', contacts_path %>

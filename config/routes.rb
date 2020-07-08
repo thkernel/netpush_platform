@@ -1,28 +1,55 @@
 Rails.application.routes.draw do
 
+get "order/success"     => "order_cards#success", as: :success 
+resources :order_cards do   
+	    get "delete"
+	  end
 
-  
-  resources :api_keys
-  resources :credentials
-  
-	#For app subdomain
-	constraints subdomain: 'app' do
-
-
-		resources :role_permissions do   
-         get "delete"
-       end
-       resources :permissions do   
-         get "delete"
-       end
+  scope path:  "settings" do
+	    resources :profiles
+  end
+  scope path: "dashboard" do 
+	  resources :campaign_contactbooks do   
+	    get "delete"
+	  end
+	  resources :campaigns do   
+	    get "delete"
+	  end
+	  resources :contacts do   
+	    get "delete"
+	  end
+	  resources :contact_books do   
+	    get "delete"
+	  end
+	  
+	  resources :orders do   
+	    get "delete"
+	  end
+	  resources :products do   
+	    get "delete"
+	  end
+	  resources :product_categories do   
+	    get "delete"
+	  end
+	  resources :api_keys do   
+	    get "delete"
+	  end
+	  resources :credentials  do   
+	    get "delete"
+	  end
+	  resources :role_permissions do   
+	    get "delete"
+	  end
+      resources :permissions do   
+      	get "delete"
+      end
        
        resources :roles do   
          get "delete"
        end
-		scope path:  "settings" do
-	       resources :profiles
-	     end
+		
 
+	     
 	    get "/users"     => "custom_users#users_and_permissions", as: :all_users 
        get "/users/unregistered"     => "custom_users#unregistered", as: :unregistered_commission_percentage 
        post "/users/new"     => "custom_users#create", as: :create_user
@@ -31,7 +58,7 @@ Rails.application.routes.draw do
        patch "/user/update/:id" => "custom_users#update", as: :udapte_user
        delete "/user/destroy/:id" => "custom_users#destroy", as: :destroy_user
        get "/user/delete/:id" => "custom_users#delete", as: :delete_user
-   
+   end
    
      	 get "/dashboard" => "dashboard#index" , as: :dashboard
    
@@ -73,7 +100,7 @@ Rails.application.routes.draw do
 	     get "/422", to: "errors#unacceptable"
 	     get "/500", to: "errors#internal_error"
 	  
-	end
+	#end
 
 
 	# For API subdomain
@@ -88,8 +115,8 @@ Rails.application.routes.draw do
 
 
 	#For platform subdomain
-	constraints subdomain: 'my' do
+	#constraints subdomain: 'my' do
 	  
-	end
+	#end
 
 end

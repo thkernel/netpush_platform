@@ -46,6 +46,8 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy
   has_one :credential, dependent: :destroy
+  has_many :contact_books, dependent: :destroy
+  has_many :contacts, dependent: :destroy
 
   
   accepts_nested_attributes_for :profile ,  allow_destroy: true
