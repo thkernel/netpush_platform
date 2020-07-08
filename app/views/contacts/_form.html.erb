@@ -1,87 +1,96 @@
-<%= form_with(model: contact, local: true) do |form| %>
-  <% if contact.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+<%= form_with(model: contact, local: false) do |form| %>
+  <div class="modal-body">
+  
+    <ul class="errors">
+    </ul>
+ 
+          
+          <%= form.hidden_field :contact_book_id %>
+        
 
-      <ul>
-      <% contact.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="row">
+
+      <div class="col-md-4">
+
+        <div class="form-group">
+          <%= form.label :first_name , "Prénom"%>
+          <%= form.text_field :first_name, class: "form-control", placeholder: "Prénom" %>
+        </div>
+
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= form.label :last_name, "Nom" %>
+          <%= form.text_field :last_name, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+
+        <div class="field">
+          <%= form.label :gender, "Genre" %>
+          <%= form.select :gender, GENDERS, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%" %>
+        </div>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :uuid %>
-    <%= form.text_field :uuid %>
-  </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= form.label :main_phone_number, "Téléphone principal", class: "required" %>
+          <%= form.text_field :main_phone_number , class: "form-control", placeholder: "Téléphone principal", required: true %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
-  </div>
+      
 
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
-  </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= form.label :country, "Pays" %>
+          <%= form.text_field :country, class: "form-control", placeholder: "Pays" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :gender %>
-    <%= form.text_field :gender %>
-  </div>
+      <div class="col-md-4">
 
-  <div class="field">
-    <%= form.label :main_phone_number %>
-    <%= form.text_field :main_phone_number %>
-  </div>
+        <div class="form-group">
+          <%= form.label :city, "Ville" %>
+          <%= form.text_field :city, class: "form-control", placeholder: "Ville" %>
+        </div>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :address, "Adresse" %>
+          <%= form.text_field :address, class: "form-control", placeholder: "Adresse" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :country %>
-    <%= form.text_field :country %>
-  </div>
+      <div class="col-md-6">
 
-  <div class="field">
-    <%= form.label :city %>
-    <%= form.text_field :city %>
-  </div>
+        <div class="form-group">
+          <%= form.label :email %>
+          <%= form.email_field :email, class: "form-control", placeholder: "Email" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= form.label :notes %>
+          <%= form.text_area :notes, class: "form-control", placeholder: "Notes" %>
+        </div>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :slug %>
-    <%= form.text_field :slug %>
-  </div>
-
-  <div class="field">
-    <%= form.label :notes %>
-    <%= form.text_area :notes %>
-  </div>
-
-  <div class="field">
-    <%= form.label :contact_book_id %>
-    <%= form.text_field :contact_book_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  </div><!-- modal body -->
+     <div class="modal-footer">
+            <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+            <%= form.submit "Enregistrer", class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+    </div>
 <% end %>

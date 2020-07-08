@@ -1,6 +1,6 @@
 
 APPLICATION_NAME = "Netpush"
-JOURS = [["Lundi"], ["Mardi"], ["Mercredi"], ["Jeudi"], ["Vendredi"], ["Samedi"], ["Dimanche"]]
+DAYS = [["Lundi"], ["Mardi"], ["Mercredi"], ["Jeudi"], ["Vendredi"], ["Samedi"], ["Dimanche"]]
 SPECIALITY_EXCLUDE_FOR_WORKPLACE = ["Pharmacien", "Laborantin"]
-GENRE = [["Masculin"], ["Féminin"]]
+GENDERS = [["Masculin"], ["Féminin"]]
 PROFILE_TYPES = [["Patient"], ["Prestataire"]]

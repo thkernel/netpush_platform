@@ -2,6 +2,7 @@ require_relative 'boot'
 
 require 'rails/all'
 #require './lib/json_web_token'
+require './lib/utils/utils'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

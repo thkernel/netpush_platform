@@ -2,23 +2,17 @@
 #
 # Table name: profiles
 #
-#  id           :bigint           not null, primary key
-#  role         :string
-#  profile_type :string
-#  first_name   :string
-#  last_name    :string
-#  civility     :string
-#  address      :string
-#  phone        :string
-#  country_id   :bigint
-#  locality_id  :bigint
-#  description  :text
-#  speciality   :string
-#  views        :bigint           default(0)
-#  status       :string
-#  user_id      :bigint
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id          :bigint           not null, primary key
+#  first_name  :string
+#  last_name   :string
+#  gender      :string
+#  address     :string
+#  phone       :string
+#  description :text
+#  user_id     :bigint
+#  status      :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 
 class Profile < ApplicationRecord

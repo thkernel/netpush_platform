@@ -116,4 +116,8 @@ Rails.application.configure do
 
 
 config.exceptions_app = self.routes
+
+
+   #Credentials requirment
+  config.require_master_key = true
 end

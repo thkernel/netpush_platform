@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 get "order/success"     => "order_cards#success", as: :success 
+get "contacts/contact-book/:contact_book_uuid" => "contacts#index", as: :contacts_from_contact_book
 resources :order_cards do   
 	    get "delete"
 	  end
@@ -17,9 +18,11 @@ resources :order_cards do
 	  end
 	  resources :contacts do   
 	    get "delete"
+
 	  end
 	  resources :contact_books do   
 	    get "delete"
+
 	  end
 	  
 	  resources :orders do   

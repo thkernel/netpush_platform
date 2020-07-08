@@ -3,6 +3,7 @@ class ContactBooksController < ApplicationController
   before_action :set_contact_book, only: [:show, :edit, :update, :destroy]
 
   layout "dashboard"
+  
   # GET /contact_books
   # GET /contact_books.json
   def index

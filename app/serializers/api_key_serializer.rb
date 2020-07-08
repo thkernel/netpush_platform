@@ -2,13 +2,18 @@
 #
 # Table name: api_keys
 #
-#  id           :bigint           not null, primary key
-#  access_token :string           not null
-#  user_id      :integer          not null
-#  active       :boolean          default(TRUE), not null
-#  expires_at   :datetime
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id                      :bigint           not null, primary key
+#  client_id               :string
+#  api_key                 :string
+#  api_secret              :string
+#  access_token            :string
+#  refresh_token           :string
+#  status                  :string           default("active")
+#  access_token_expire_at  :datetime
+#  refresh_token_expire_at :datetime
+#  user_id                 :bigint
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
 #
 
 class ApiKeySerializer < ActiveModel::Serializer

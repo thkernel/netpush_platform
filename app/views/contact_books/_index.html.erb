@@ -1,6 +1,6 @@
 <% @contact_books.each do |contact_book| %>
   <tr>
-    <td><%= contact_book.name %></td>
+    <td><%= link_to contact_book.name, contacts_path(cb: contact_book.uuid) %></td>
     <td><%= count_contact(contact_book.id) %></td>
    <td>
             <div class="action-buttons">
