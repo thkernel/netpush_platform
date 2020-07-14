@@ -1,6 +1,6 @@
-class CreateOrderCards < ActiveRecord::Migration[5.2]
+class CreateCardOrders < ActiveRecord::Migration[5.2]
   def change
-    create_table :order_cards do |t|
+    create_table :card_orders do |t|
       t.string :first_name
       t.string :last_name
       t.string :country

@@ -1,11 +1,11 @@
-<%= form_with(model: order_card, local: true) do |form| %>
+<%= form_with(model: card_order, local: true) do |form| %>
   <div class="form-content">
-  <% if order_card.errors.any? %>
+  <% if card_order.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(order_card.errors.count, "error") %> prohibited this order_card from being saved:</h2>
+      <h2><%= pluralize(card_order.errors.count, "error") %> prohibited this card_order from being saved:</h2>
 
       <ul>
-      <% order_card.errors.full_messages.each do |message| %>
+      <% card_order.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

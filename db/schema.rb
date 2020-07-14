@@ -79,6 +79,22 @@ ActiveRecord::Schema.define(version: 2020_07_07_172610) do
     t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 
+  create_table "card_orders", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "country"
+    t.string "city"
+    t.string "address"
+    t.string "phone_number"
+    t.string "email"
+    t.string "card_type"
+    t.integer "quantity"
+    t.string "status"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "contact_books", force: :cascade do |t|
     t.string "uuid"
     t.string "name"
@@ -110,22 +126,6 @@ ActiveRecord::Schema.define(version: 2020_07_07_172610) do
     t.datetime "updated_at", null: false
     t.index ["contact_book_id"], name: "index_contacts_on_contact_book_id"
     t.index ["user_id"], name: "index_contacts_on_user_id"
-  end
-
-  create_table "order_cards", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "country"
-    t.string "city"
-    t.string "address"
-    t.string "phone_number"
-    t.string "email"
-    t.string "card_type"
-    t.integer "quantity"
-    t.string "status"
-    t.text "notes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|

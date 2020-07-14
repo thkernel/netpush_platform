@@ -2,13 +2,16 @@ Rails.application.routes.draw do
 
 get "order/success"     => "order_cards#success", as: :success 
 get "contacts/contact-book/:contact_book_uuid" => "contacts#index", as: :contacts_from_contact_book
-resources :order_cards do   
-	    get "delete"
-	  end
+get "card/order/new" => "card_orders#new", as: :new_card_order
+
+resources :card_orders do   
+	get "delete"
+end
 
   scope path:  "settings" do
 	    resources :profiles
   end
+  
   scope path: "dashboard" do 
 	  resources :campaign_contactbooks do   
 	    get "delete"

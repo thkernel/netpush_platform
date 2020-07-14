@@ -74,7 +74,7 @@ class ContactsController < ApplicationController
   def destroy
     @contact.destroy
     respond_to do |format|
-      format.html { redirect_to contacts_url, notice: 'Contact was successfully destroyed.' }
+      format.html { redirect_to contacts_path(cb: ContactBook.find(@contact.contact_book_id).uuid), notice: 'Contact was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -86,13 +86,7 @@ class ContactsController < ApplicationController
     end
 
     def set_contact_book
-      
-
-      
-        
-        @contact_book ||= ContactBook.find_by(uuid: params[:contact_book])
-        
-        
+        @contact_book ||= ContactBook.find_by(uuid: params[:cb])
     end
 
     # Only allow a list of trusted parameters through.

@@ -18,6 +18,8 @@
 #  updated_at   :datetime         not null
 #
 
-class OrderCardSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :country, :city, :address, :phone_number, :card_type, :quantity, :status, :note
+class CardOrder < ApplicationRecord
+	# For active storage
+  has_many_attached :attachments
+
 end
