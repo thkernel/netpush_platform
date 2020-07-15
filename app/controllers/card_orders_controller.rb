@@ -1,6 +1,7 @@
 class CardOrdersController < ApplicationController
+  before_action :authenticate_user! , only: [:show, :edit, :update, :destroy]
   before_action :set_card_order, only: [:show, :edit, :update, :destroy]
-
+  
 
   # GET /order_cards
   # GET /order_cards.json

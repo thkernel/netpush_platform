@@ -1,3 +1,9 @@
+body {
+ 
+  font-family: Inter, Roboto, "Helvetica Neue",Arial,sans-serif !important;
+  
+}
+
 body{
     background-color: #f7f7f7 !important;
 }
@@ -805,4 +811,28 @@ section{
 }
 .br-logo img{
     width: 200px !important;
+}
+
+.required:after { 
+    content:" *"; 
+    color: red;
+}
+.bg-br-primary{
+    background: #0862a5;
+    background-attachment: scroll;
+    background-image: none;
+    background-image: radial-gradient(circle farthest-corner at right bottom, #0971ce 0%, #0862a5 28%, #10283f 79%, #0e1c2c 100%);
+    min-height: 100vh;
+    background-attachment: fixed;
+}
+
+.mb5 {
+    margin-bottom: 5em !important;
+}
+.mt5 {
+    margin-top: 5em !important;
+}
+.recaptcha_error{
+    color: red;
+    margin: 5px;
 }

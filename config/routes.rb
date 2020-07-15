@@ -4,6 +4,10 @@ get "order/success"     => "order_cards#success", as: :success
 get "contacts/contact-book/:contact_book_uuid" => "contacts#index", as: :contacts_from_contact_book
 get "card/order/new" => "card_orders#new", as: :new_card_order
 
+
+get "import/contacts" => "contacts#import_contacts_modal", as: :import_contacts_modal
+post "import/contacts" => "contacts#import_contacts", as: :import_contacts
+
 resources :card_orders do   
 	get "delete"
 end
@@ -56,7 +60,7 @@ end
 		
 
 	     
-	    get "/users"     => "custom_users#users_and_permissions", as: :all_users 
+	   get "/users"     => "custom_users#users_and_permissions", as: :all_users 
        get "/users/unregistered"     => "custom_users#unregistered", as: :unregistered_commission_percentage 
        post "/users/new"     => "custom_users#create", as: :create_user
        get "/users/new"     => "custom_users#new", as: :new_user

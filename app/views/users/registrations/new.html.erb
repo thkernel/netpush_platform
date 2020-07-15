@@ -29,10 +29,21 @@
      
        
           <div class="form-group">
-            <label>
-              <input type="checkbox"> J'accepte les <a href="#">conditions ..</a>
-            </label>
-          </div>
+        En continuant votre inscription, vous déclarez avoir lu et acceptez les <%= link_to "conditions d'utilisation", root_path %> de la plateforme.
+      </div>
+
+
+          <div class="form-group text-center">
+
+        <div class="recaptcha_error">
+          <%= flash[:recaptcha_error] %>
+        </div>
+
+        <div>
+          <%= recaptcha_tags %>
+        </div>
+      </div>
+       
        
         <!-- /.col -->
         <div class="form-group">

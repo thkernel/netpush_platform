@@ -103,6 +103,10 @@ gem 'rack-cors', '~> 1.1'
 gem 'grape-active_model_serializers', '~> 1.5', '>= 1.5.2'
 gem 'devise_token_auth'
 gem 'jwt', '~> 2.2', '>= 2.2.1'
+gem 'recaptcha', '~> 5.5'
+#gem 'dotenv', '~> 2.7', '>= 2.7.6'
+gem 'dotenv-rails', '~> 2.7', '>= 2.7.6',  :groups => [:development, :test, :production]
+
 
 # This gem causes db:create to fail
 # You can enable it for tests as long as the db has been created
@@ -113,7 +117,7 @@ end
 group :development do
   gem "better_errors"
   gem "binding_of_caller"
-  gem 'dotenv-rails', '~> 2.7', '>= 2.7.2'
+  #gem 'dotenv-rails', '~> 2.7', '>= 2.7.2'
   gem 'annotate', '~> 2.7', '>= 2.7.5'
   gem 'faker', '~> 1.9', '>= 1.9.3'
   gem 'capistrano', '~> 3.10', '>= 3.10.2'
