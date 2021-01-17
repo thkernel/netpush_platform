@@ -11,17 +11,17 @@ set :deploy_to, "/home/ubuntu/apps/rails/netpush_platform/netpush_platform.prod"
 set :rails_env, "production"
 
 #server "51.38.235.131", user: "root", roles: %w{app db web}, ssh_options: {forward_agent: true}
-server "51.89.167.78", user: "ubuntu", roles: %w{app db web}, ssh_options: {forward_agent: true}
+server "my.netpushgroup.com", user: "ubuntu", roles: %w{app db web}, ssh_options: {forward_agent: true}
 
 set :branch, "master"
-set :port, 3031
+set :port, 3030
 
 
 
 
  set :nginx_config_name, "netpush_platform.prod"
  set :nginx_server_name, "netpush_platform.prod"
- set :puma_workers, 2
+ set :puma_workers, 1
 
 # role-based syntax
 # ==================
