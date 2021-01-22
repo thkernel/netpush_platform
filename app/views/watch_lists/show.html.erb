@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @watch_list.uid %>
+</p>
+
+<p>
+  <strong>Serial number:</strong>
+  <%= @watch_list.serial_number %>
+</p>
+
+<p>
+  <strong>Full name:</strong>
+  <%= @watch_list.full_name %>
+</p>
+
+<p>
+  <strong>Program list:</strong>
+  <%= @watch_list.program_list %>
+</p>
+
+<p>
+  <strong>Office:</strong>
+  <%= @watch_list.office %>
+</p>
+
+<p>
+  <strong>Additional information:</strong>
+  <%= @watch_list.additional_information %>
+</p>
+
+<p>
+  <strong>Party country:</strong>
+  <%= @watch_list.party_country %>
+</p>
+
+<p>
+  <strong>Watchlist populated author:</strong>
+  <%= @watch_list.watchlist_populated_author %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @watch_list.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @watch_list.user %>
+</p>
+
+<%= link_to 'Edit', edit_watch_list_path(@watch_list) %> |
+<%= link_to 'Back', watch_lists_path %>

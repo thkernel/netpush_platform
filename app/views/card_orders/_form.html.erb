@@ -1,27 +1,31 @@
 <%= form_with(model: card_order, local: true) do |form| %>
   <div class="form-content">
-  <% if card_order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(card_order.errors.count, "error") %> prohibited this card_order from being saved:</h2>
+    <% if card_order.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(card_order.errors.count, "error") %> prohibited this card_order from being saved:</h2>
 
-      <ul>
-      <% card_order.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <ul>
+        <% card_order.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
 
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="form-group col-md-4">
+      <%= form.label :civility, "Civilité", class: "required" %>
+      <%= form.select :civility, CIVILITIES, {prompt: "Sélectionner"}, class: "form-control", required: true %>
+    </div>
+    <div class="col-md-4">
       <div class="form-group">
         <%= form.label :first_name, "Prénom", class: "required" %>
         <%= form.text_field :first_name, class: "form-control", placeholder: "Prénom", required: true %>
       </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="form-group">
         <%= form.label :last_name , "Nom", class: "required" %>
         <%= form.text_field :last_name, class: "form-control", placeholder: "Nom", require: true %>
@@ -30,17 +34,38 @@
   </div>
 
   <div class="row">
+    <div class="form-group col-md-4">
+      <%= form.label :birth_date, "Date de naissance", class: "required" %>
+      <%= form.date_field :birth_date, class: "form-control", required: true %>
+    </div>
     <div class="col-md-4">
       <div class="form-group">
-        <%= form.label :country, "Pays", class: "required" %>
-        <%= form.text_field :country, class: "form-control", placeholder: "Pays", required: true %>
+        <%= form.label :nationality, "Nationalité", class: "required" %>
+        <%= form.text_field :nationality, class: "form-control", placeholder: "Prénom", required: true %>
       </div>
     </div>
 
     <div class="col-md-4">
       <div class="form-group">
-        <%= form.label :city, "Ville", class: "required" %>
-        <%= form.text_field :city, class: "form-control", placeholder: "Ville", required: true %>
+        <%= form.label :identity_type , "Type de pièce", class: "required" %>
+        <%= form.collection_select :identity_type_id, @identity_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;" , required: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :identity_number, "Numéro de pièce d’identité", class: "required" %>
+        <%= form.text_field :identity_number, class: "form-control", placeholder: "Numéro de pièce d’identité", required: true %>
+
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :profession, "Profession", class: "required" %>
+        <%= form.text_field :profession, class: "form-control", placeholder: "Profession", required: true %>
       </div>
     </div>
 
@@ -55,30 +80,85 @@
   <div class="row">
     <div class="col-md-4">
       <div class="form-group">
-        <%= form.label :phone_number, "Téléphone", class: "required" %>
-        <%= form.text_field :phone_number, class: "form-control", placeholder: "Téléphone", required: true %>
+        <%= form.label :mobile_phone_number, "Téléphone mobile", class: "required" %>
+        <%= form.text_field :mobile_phone_number, class: "form-control", placeholder: "Téléphone mobile", required: true %>
+
       </div>
     </div>
 
     <div class="col-md-4">
-
       <div class="form-group">
-        <%= form.label :email, "Email" %>
-        <%= form.email_field :email, class: "form-control", placeholder: "Email" %>
+        <%= form.label :home_phone_number, "Téléphone maison" %>
+        <%= form.text_field :home_phone_number, class: "form-control", placeholder: "Téléphone maison" %>
       </div>
     </div>
 
     <div class="col-md-4">
-
       <div class="form-group">
-        <%= form.label :attachments, "Pièce jointe" %>
-        <%= form.file_field :attachments %>
+        <%= form.label :work_phone_number, "Téléphone bureau" %>
+        <%= form.text_field :work_phone_number, class: "form-control", placeholder: "Téléphone bureau" %>
       </div>
     </div>
-
-  
-
   </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :card_type_id, "Type de carte", class: "required" %>
+        <%= form.collection_select :card_type_id, @card_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;" , required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-9">
+      <div class="form-group">
+        <%= form.label :name_on_card, "Nom à inscrire sur la carte (maximum 21 caractères y compris les espaces)" %>
+        <%= form.text_field :home_phone_number, class: "form-control", placeholder: "Nom à inscrire sur la carte (maximum 21 caractères y compris les espaces)" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :uba_customer, "Etes‐vous client UBA", class: "required" %>
+        <%= form.select :uba_customer, UBA_CUSTOMER, {prompt: "Sélectionner"}, class: "form-control", required: true %>
+
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :uba_account_type_id, "Type de compte" %>
+        <%= form.collection_select :uba_account_type_id, @uba_account_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;" , required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :uba_account_numberr, "Numéro de compte" %>
+        <%= form.text_field :uba_account_number, class: "form-control", placeholder: "Numéro de compte" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.label :email, "Email", class: "required" %>
+        <%= form.email_field :email, class: "form-control", placeholder: "Email" , required: true%>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.label :attachments, "Pièce jointe", class: "required" %>
+        <%= form.file_field :attachments, class: "form-control", required: true %>
+      </div>
+    </div>
+  </div>
+
 
   <div class="row">
     <div class="col-md-12">
@@ -89,8 +169,12 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <%= form.submit "Valider", class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.submit "ENVOYER", class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+      </div>
+    </div>
   </div>
-</div>
+  </div>
 <% end %>

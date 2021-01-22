@@ -17,6 +17,11 @@ class CardOrdersController < ApplicationController
 
   # GET /order_cards/new
   def new
+    @identity_types = IdentityType.all
+    @card_types = CardType.all
+    @uba_account_types = UbaAccountType.all
+
+
     @card_order = CardOrder.new
     render layout: "front"
   end

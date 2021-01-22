@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  
 get "order/success"     => "order_cards#success", as: :success 
 get "contacts/contact-book/:contact_book_uuid" => "contacts#index", as: :contacts_from_contact_book
 get "card/order/new" => "card_orders#new", as: :new_card_order
@@ -16,7 +17,31 @@ end
 	    resources :profiles
   end
   
-  scope path: "dashboard" do 
+	scope path: "dashboard" do 
+		get "import/watchlist" => "watch_lists#import_watchlist_modal", as: :import_watchlist_modal
+		post "import/watchlist" => "watch_lists#import_watchlist", as: :import_watchlist
+
+		resources :features do   
+			get "delete"
+		end
+
+		resources :activity_logs do   
+			get "delete"
+		end
+  
+		resources :watch_lists do   
+			get "delete"
+		end
+		resources :card_types do   
+			get "delete"
+		end
+		resources :uba_account_types do   
+			get "delete"
+		end
+		resources :identity_types do   
+			get "delete"
+		end
+		
 	  resources :campaign_contactbooks do   
 	    get "delete"
 	  end

@@ -106,6 +106,8 @@ gem 'jwt', '~> 2.2', '>= 2.2.1'
 gem 'recaptcha', '~> 5.5'
 #gem 'dotenv', '~> 2.7', '>= 2.7.6'
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.6',  :groups => [:development, :test, :production]
+gem 'countries', require: 'countries/global'
+gem 'faraday', '~> 1.0', '>= 1.0.1'
 
 
 # This gem causes db:create to fail

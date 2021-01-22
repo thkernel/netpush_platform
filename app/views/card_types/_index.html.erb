@@ -1,0 +1,18 @@
+<% @card_types.each do |card_type| %>
+    <tr>
+   
+    <td><%= card_type.name %></td>
+    <td>
+            <div class="action-buttons">
+                    <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'), edit_card_type_path(card_type), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), card_type_delete_path(card_type), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+        </td>
+    </tr>
+<% end %>

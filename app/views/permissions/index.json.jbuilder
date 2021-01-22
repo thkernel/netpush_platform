@@ -1,1 +1,1 @@
-json.array! @permissions, partial: "permissions/permission", as: :permission
+json.array! @abilities, partial: "abilities/ability", as: :ability

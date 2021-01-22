@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @uba_account_type.uid %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @uba_account_type.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @uba_account_type.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @uba_account_type.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @uba_account_type.user %>
+</p>
+
+<%= link_to 'Edit', edit_uba_account_type_path(@uba_account_type) %> |
+<%= link_to 'Back', uba_account_types_path %>

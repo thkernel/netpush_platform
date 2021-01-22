@@ -1,6 +1,10 @@
 class PermissionsController < ApplicationController
+  authorize_resource
+  
+  before_action :authenticate_user!
   before_action :set_permission, only: [:show, :edit, :update, :destroy]
 
+  layout "dashboard"
   # GET /permissions
   # GET /permissions.json
   def index
@@ -14,11 +18,21 @@ class PermissionsController < ApplicationController
 
   # GET /permissions/new
   def new
+    @features = Feature.all 
+    @roles = Role.where.not(name: ["superuser", "root"])
+    @permissions = Permission.all
     @permission = Permission.new
   end
 
   # GET /permissions/1/edit
   def edit
+    @features = Feature.all 
+    @roles = Role.where.not(name: ["superuser", "root"])
+   
+    permission_items = @permission.permission_items
+
+    @selected_permissions = permission_items unless permission_items.blank?
+
   end
 
   # POST /permissions
@@ -26,13 +40,23 @@ class PermissionsController < ApplicationController
   def create
     @permission = Permission.new(permission_params)
 
+     # Create Scholarship study levels
+     params[:permission_items][:permission_actions].each do |permission_action|
+      unless permission_action.empty?
+        @permission.permission_items.build(action_name: permission_action)
+      end
+    end
+
     respond_to do |format|
       if @permission.save
-        format.html { redirect_to @permission, notice: 'Permission was successfully created.' }
+        @permissions = Permission.all
+        format.html { redirect_to permissions_path, notice: 'permission was successfully created.' }
         format.json { render :show, status: :created, location: @permission }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @permission.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -40,15 +64,31 @@ class PermissionsController < ApplicationController
   # PATCH/PUT /permissions/1
   # PATCH/PUT /permissions/1.json
   def update
+    @permission.permission_items.delete_all
+     # Create Scholarship study levels
+     params[:permission_items][:permission_actions].each do |permission_action|
+      unless permission_action.empty?
+        @permission.permission_items.build(action_name: permission_action)
+      end
+    end
+
     respond_to do |format|
       if @permission.update(permission_params)
-        format.html { redirect_to @permission, notice: 'Permission was successfully updated.' }
+        @permissions = Permission.all
+        format.html { redirect_to @permission, notice: 'permission was successfully updated.' }
         format.json { render :show, status: :ok, location: @permission }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @permission.errors, status: :unprocessable_entity }
+        format.js
       end
     end
+  end
+
+
+  def delete
+    @permission = Permission.find(params[:permission_id])
   end
 
   # DELETE /permissions/1
@@ -56,7 +96,7 @@ class PermissionsController < ApplicationController
   def destroy
     @permission.destroy
     respond_to do |format|
-      format.html { redirect_to permissions_url, notice: 'Permission was successfully destroyed.' }
+      format.html { redirect_to permissions_url, notice: 'permission was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +109,6 @@ class PermissionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def permission_params
-      params.require(:permission).permit(:name, :description, :status)
+      params.require(:permission).permit(:role_id, :feature_id, permission_items_attributes: [:permission_actions])
     end
 end

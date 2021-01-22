@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_07_172610) do
+ActiveRecord::Schema.define(version: 2021_01_21_194710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,20 @@ ActiveRecord::Schema.define(version: 2020_07_07_172610) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "activity_logs", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "user_id"
+    t.string "browser"
+    t.string "ip_address"
+    t.string "controller"
+    t.string "action"
+    t.string "params"
+    t.string "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_activity_logs_on_user_id"
   end
 
   create_table "api_keys", force: :cascade do |t|
@@ -80,19 +94,46 @@ ActiveRecord::Schema.define(version: 2020_07_07_172610) do
   end
 
   create_table "card_orders", force: :cascade do |t|
+    t.string "uid"
+    t.string "civility"
     t.string "first_name"
     t.string "last_name"
+    t.datetime "birth_date"
+    t.string "nationality"
+    t.bigint "identity_type_id"
+    t.string "identity_number"
+    t.string "profession"
+    t.string "address"
     t.string "country"
     t.string "city"
-    t.string "address"
-    t.string "phone_number"
+    t.string "mobile_phone_number"
+    t.string "home_phone_number"
+    t.string "work_phone_number"
+    t.string "name_on_card"
+    t.boolean "uba_customer"
+    t.bigint "uba_account_type_id"
+    t.string "uba_account_number"
     t.string "email"
-    t.string "card_type"
+    t.bigint "card_type_id"
     t.integer "quantity"
     t.string "status"
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["card_type_id"], name: "index_card_orders_on_card_type_id"
+    t.index ["identity_type_id"], name: "index_card_orders_on_identity_type_id"
+    t.index ["uba_account_type_id"], name: "index_card_orders_on_uba_account_type_id"
+  end
+
+  create_table "card_types", force: :cascade do |t|
+    t.string "uid"
+    t.string "name"
+    t.text "description"
+    t.string "status"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_card_types_on_user_id"
   end
 
   create_table "contact_books", force: :cascade do |t|
@@ -128,6 +169,24 @@ ActiveRecord::Schema.define(version: 2020_07_07_172610) do
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
+  create_table "features", force: :cascade do |t|
+    t.string "uid"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "identity_types", force: :cascade do |t|
+    t.string "uid"
+    t.string "name"
+    t.text "description"
+    t.string "status"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_identity_types_on_user_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.text "uid"
     t.bigint "user_id"
@@ -137,22 +196,25 @@ ActiveRecord::Schema.define(version: 2020_07_07_172610) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "permission_roles", force: :cascade do |t|
-    t.bigint "role_id"
+  create_table "permission_items", force: :cascade do |t|
+    t.string "uid"
     t.bigint "permission_id"
+    t.string "action_name"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["permission_id"], name: "index_permission_roles_on_permission_id"
-    t.index ["role_id"], name: "index_permission_roles_on_role_id"
+    t.index ["permission_id"], name: "index_permission_items_on_permission_id"
   end
 
   create_table "permissions", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
+    t.string "uid"
+    t.bigint "feature_id"
+    t.bigint "role_id"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["feature_id"], name: "index_permissions_on_feature_id"
+    t.index ["role_id"], name: "index_permissions_on_role_id"
   end
 
   create_table "product_categories", force: :cascade do |t|
@@ -199,6 +261,17 @@ ActiveRecord::Schema.define(version: 2020_07_07_172610) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "uba_account_types", force: :cascade do |t|
+    t.string "uid"
+    t.string "name"
+    t.text "description"
+    t.string "status"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_uba_account_types_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "login"
     t.bigint "role_id"
@@ -229,21 +302,46 @@ ActiveRecord::Schema.define(version: 2020_07_07_172610) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  create_table "watch_lists", force: :cascade do |t|
+    t.string "uid"
+    t.string "serial_number"
+    t.string "full_name"
+    t.string "program_list"
+    t.string "office"
+    t.text "additional_information"
+    t.string "party_country"
+    t.string "watchlist_populated_author"
+    t.string "status"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_watch_lists_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "activity_logs", "users"
   add_foreign_key "api_keys", "users"
   add_foreign_key "campaign_contactbooks", "campaigns"
   add_foreign_key "campaign_contactbooks", "contact_books"
   add_foreign_key "campaign_contactbooks", "users"
   add_foreign_key "campaigns", "users"
+  add_foreign_key "card_orders", "card_types"
+  add_foreign_key "card_orders", "identity_types"
+  add_foreign_key "card_orders", "uba_account_types"
+  add_foreign_key "card_types", "users"
   add_foreign_key "contact_books", "users"
   add_foreign_key "contacts", "contact_books"
   add_foreign_key "contacts", "users"
+  add_foreign_key "identity_types", "users"
   add_foreign_key "orders", "users"
-  add_foreign_key "permission_roles", "permissions"
-  add_foreign_key "permission_roles", "roles"
+  add_foreign_key "permission_items", "permissions"
+  add_foreign_key "permissions", "features"
+  add_foreign_key "permissions", "roles"
   add_foreign_key "product_categories", "users"
   add_foreign_key "products", "product_categories"
   add_foreign_key "products", "users"
   add_foreign_key "profiles", "users"
+  add_foreign_key "uba_account_types", "users"
   add_foreign_key "users", "roles"
+  add_foreign_key "watch_lists", "users"
 end
