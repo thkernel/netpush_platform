@@ -1,7 +1,8 @@
 class CreateApiKeys < ActiveRecord::Migration[5.2]
   def change
     create_table :api_keys do |t|
-	  t.string :client_id
+      t.string :uid
+	    t.string :client_id
       t.string :api_key
       t.string :api_secret
       t.string :access_token

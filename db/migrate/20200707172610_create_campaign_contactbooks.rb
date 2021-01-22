@@ -1,7 +1,7 @@
 class CreateCampaignContactbooks < ActiveRecord::Migration[5.2]
   def change
     create_table :campaign_contactbooks do |t|
-      t.string :uuid
+      t.string :uid
       t.references :contact_book, foreign_key: true
       t.references :campaign, foreign_key: true
       t.string :status

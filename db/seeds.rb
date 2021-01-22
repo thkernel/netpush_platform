@@ -75,3 +75,67 @@ unless Profile.all.present?
     ])
 
 end
+
+# Card type
+unless CardType.all.present?
+    card_types = CardType.create([
+        {
+            name: "Débit",  
+          
+            user_id: users.first.id
+        },
+        {
+            name: "Prépayée",  
+            user_id: users.first.id
+        }
+    
+    ])
+
+end
+
+
+# Identity type
+unless IdentityType.all.present?
+    identity_types = IdentityType.create([
+        {
+            name: "CNI",  
+          
+            user_id: users.first.id
+        },
+        {
+            name: "Passeport",  
+            user_id: users.first.id
+        },
+        {
+            name: "Permis de conduire",  
+            user_id: users.first.id
+        },
+        {
+            name: "NINA",  
+            user_id: users.first.id
+        },
+        {
+            name: "Autres",  
+            user_id: users.first.id
+        }
+    
+    ])
+
+end
+
+# UBA account type
+unless UbaAccountType.all.present?
+    uba_account_types = UbaAccountType.create([
+        {
+            name: "Courant A/C",  
+          
+            user_id: users.first.id
+        },
+        {
+            name: "Epargne A/C",  
+            user_id: users.first.id
+        }
+    
+    ])
+
+end

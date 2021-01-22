@@ -836,3 +836,20 @@ section{
     color: red;
     margin: 5px;
 }
+
+// For sticky footer
+html, body {
+    height: 100% !important;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  .page-wrapper {
+    flex: 1 0 auto;
+    margin-top: 60px !important;
+  }
+  .footer {
+    flex-shrink: 0;
+  }
+  /* end */

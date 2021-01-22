@@ -1,0 +1,11 @@
+$("ul.errors").html("");
+<% if @card_type.errors.any? %>
+  <% @card_type.errors.full_messages.each do |message| %>
+ 
+    $("ul.errors").append($('<div class="c-alert c-alert--danger" > ').html("<%= message.html_safe %> "));
+  <% end %>
+<% else %>
+  $(".card-types").html("<%= escape_javascript(render 'index') %>");
+  $("#card-type-modal").modal("hide");
+ 
+<% end %>

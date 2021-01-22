@@ -64,7 +64,7 @@ class ProductCategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product_category
-      @product_category = ProductCategory.find(params[:id])
+      @product_category = ProductCategory.find_by(uid: params[:uid])
     end
 
     # Only allow a list of trusted parameters through.

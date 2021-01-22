@@ -13,6 +13,10 @@
 #
 
 class CampaignContactbook < ApplicationRecord
+  include SharedUtils::Generate
+
+  before_save :generate_random_number_uid
+  
   belongs_to :contact_book
   belongs_to :campaign
   belongs_to :user

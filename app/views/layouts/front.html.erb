@@ -11,7 +11,9 @@
 
   <body>
     <%= render('layouts/partials/front/header') %>
-    <%= yield %>
+     <div class="page-wrapper">
+      <%= yield %>
+      </div>
     <%= render('layouts/partials/front/footer') %>
   </body>
 </html>

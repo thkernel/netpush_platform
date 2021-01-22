@@ -104,7 +104,7 @@ class PermissionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_permission
-      @permission = Permission.find(params[:id])
+      @permission = Permission.find_by(uid: params[:uid])
     end
 
     # Only allow a list of trusted parameters through.

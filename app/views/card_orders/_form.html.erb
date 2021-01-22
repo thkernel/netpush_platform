@@ -41,7 +41,7 @@
     <div class="col-md-4">
       <div class="form-group">
         <%= form.label :nationality, "Nationalité", class: "required" %>
-        <%= form.text_field :nationality, class: "form-control", placeholder: "Prénom", required: true %>
+        <%= form.text_field :nationality, class: "form-control", placeholder: "Nationalité", required: true %>
       </div>
     </div>
 
@@ -73,6 +73,22 @@
       <div class="form-group">
         <%= form.label :address, "Adresse" %>
         <%= form.text_field :address, class: "form-control", placeholder: "Adresse" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :country, "Pays", class: "required" %>
+        <%= form.collection_select(:country, ISO3166::Country.countries.sort_by(&:name).collect { |c| [ c.name, "#{c.name}" ] }, :first, :last, {include_blank: 'Pays'}, class: "form-control", 'data-style': 'form-control', required: true) %>  
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :city, "Ville" %>
+        <%= form.text_field :city, class: "form-control", placeholder: "Ville" %>
       </div>
     </div>
   </div>
@@ -112,7 +128,7 @@
     <div class="col-md-9">
       <div class="form-group">
         <%= form.label :name_on_card, "Nom à inscrire sur la carte (maximum 21 caractères y compris les espaces)" %>
-        <%= form.text_field :home_phone_number, class: "form-control", placeholder: "Nom à inscrire sur la carte (maximum 21 caractères y compris les espaces)" %>
+        <%= form.text_field :name_on_card, class: "form-control", placeholder: "Nom à inscrire sur la carte (maximum 21 caractères y compris les espaces)" %>
       </div>
     </div>
   </div>
@@ -129,7 +145,7 @@
     <div class="col-md-4">
       <div class="form-group">
         <%= form.label :uba_account_type_id, "Type de compte" %>
-        <%= form.collection_select :uba_account_type_id, @uba_account_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;" , required: true %>
+        <%= form.collection_select :uba_account_type_id, @uba_account_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;"  %>
       </div>
     </div>
 

@@ -11,7 +11,11 @@
 #
 
 class Role < ApplicationRecord
-    has_many :users, dependent: :destroy
+  include SharedUtils::Generate
+
+  before_save :generate_random_number_uid
+
+  has_many :users, dependent: :destroy
 
     # Validations
   validates :name, presence: true, uniqueness: true

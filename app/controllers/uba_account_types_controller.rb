@@ -59,6 +59,12 @@ class UbaAccountTypesController < ApplicationController
     end
   end
 
+
+  def delete
+    @uba_account_type = UbaAccountType.find(params[:uba_account_type_id])
+  end
+
+
   # DELETE /uba_account_types/1
   # DELETE /uba_account_types/1.json
   def destroy
@@ -73,7 +79,7 @@ class UbaAccountTypesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_uba_account_type
-      @uba_account_type = UbaAccountType.find(params[:id])
+      @uba_account_type = UbaAccountType.find_by(uid: params[:uid])
     end
 
     # Only allow a list of trusted parameters through.

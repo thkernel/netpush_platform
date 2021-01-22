@@ -1,23 +1,23 @@
 <% @card_orders.each do |card_order| %>
   <tr>
-    <td><%= card_order.created_at.strftime("%d/%m%/%yyyy") %></td>
+    <td><%= card_order.created_at.strftime("%d/%m/%Y") %></td>
+    <td><%= card_order.civility %></td>
     <td><%= card_order.first_name %></td>
     <td><%= card_order.last_name %></td>
-    <td><%= card_order.country %></td>
     <td><%= card_order.city %></td>
-    <td><%= card_order.phone_number %></td>
+    <td><%= card_order.mobile_phone_number %></td>
     <td><%= card_order.status %></td>
     
     <td>
             <div class="action-buttons">
-                    <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
-'), edit_card_order_path(card_order), title: "Modifier", remote: true %>
+                    <%= link_to raw('<i class="fa fa-eye" aria-hidden="true"></i>
+'), card_order_path(card_order.uid), title: "Voir la fiche" %>
 
 
 
 
 <%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
-'), card_order_delete_path(card_order), remote: true, title: "Supprimer", class: "delete" %>
+'), card_order_delete_path(card_order.uid), remote: true, title: "Supprimer", class: "delete" %>
 </div>
         </td>
   </tr>

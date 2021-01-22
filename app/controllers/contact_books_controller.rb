@@ -77,7 +77,7 @@ def delete
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contact_book
-      @contact_book = ContactBook.find(params[:id])
+      @contact_book = ContactBook.find_by(uid: params[:uid])
     end
 
     # Only allow a list of trusted parameters through.

@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2021_01_21_194710) do
   end
 
   create_table "api_keys", force: :cascade do |t|
+    t.string "uid"
     t.string "client_id"
     t.string "api_key"
     t.string "api_secret"
@@ -66,7 +67,7 @@ ActiveRecord::Schema.define(version: 2021_01_21_194710) do
   end
 
   create_table "campaign_contactbooks", force: :cascade do |t|
-    t.string "uuid"
+    t.string "uid"
     t.bigint "contact_book_id"
     t.bigint "campaign_id"
     t.string "status"
@@ -79,7 +80,7 @@ ActiveRecord::Schema.define(version: 2021_01_21_194710) do
   end
 
   create_table "campaigns", force: :cascade do |t|
-    t.string "uuid"
+    t.string "uid"
     t.string "title"
     t.text "content"
     t.datetime "start_date"
@@ -110,7 +111,7 @@ ActiveRecord::Schema.define(version: 2021_01_21_194710) do
     t.string "home_phone_number"
     t.string "work_phone_number"
     t.string "name_on_card"
-    t.boolean "uba_customer"
+    t.string "uba_customer"
     t.bigint "uba_account_type_id"
     t.string "uba_account_number"
     t.string "email"
@@ -137,7 +138,7 @@ ActiveRecord::Schema.define(version: 2021_01_21_194710) do
   end
 
   create_table "contact_books", force: :cascade do |t|
-    t.string "uuid"
+    t.string "uid"
     t.string "name"
     t.string "status"
     t.string "slug"
@@ -149,7 +150,7 @@ ActiveRecord::Schema.define(version: 2021_01_21_194710) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.string "uuid"
+    t.string "uid"
     t.string "first_name"
     t.string "last_name"
     t.string "gender"
@@ -188,7 +189,7 @@ ActiveRecord::Schema.define(version: 2021_01_21_194710) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.text "uid"
+    t.string "uid"
     t.bigint "user_id"
     t.string "status"
     t.datetime "created_at", null: false
@@ -218,6 +219,7 @@ ActiveRecord::Schema.define(version: 2021_01_21_194710) do
   end
 
   create_table "product_categories", force: :cascade do |t|
+    t.string "uid"
     t.string "name"
     t.string "description"
     t.string "status"
@@ -228,6 +230,7 @@ ActiveRecord::Schema.define(version: 2021_01_21_194710) do
   end
 
   create_table "products", force: :cascade do |t|
+    t.string "uid"
     t.bigint "product_category_id"
     t.string "name"
     t.string "description"
@@ -240,6 +243,7 @@ ActiveRecord::Schema.define(version: 2021_01_21_194710) do
   end
 
   create_table "profiles", force: :cascade do |t|
+    t.string "uid"
     t.string "first_name"
     t.string "last_name"
     t.string "gender"
@@ -254,6 +258,7 @@ ActiveRecord::Schema.define(version: 2021_01_21_194710) do
   end
 
   create_table "roles", force: :cascade do |t|
+    t.string "uid"
     t.string "name"
     t.text "description"
     t.string "status"
@@ -275,7 +280,7 @@ ActiveRecord::Schema.define(version: 2021_01_21_194710) do
   create_table "users", force: :cascade do |t|
     t.string "login"
     t.bigint "role_id"
-    t.string "uuid"
+    t.string "uid"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

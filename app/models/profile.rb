@@ -17,6 +17,10 @@
 
 class Profile < ApplicationRecord
   include PgSearch::Model
+  include SharedUtils::Generate
+
+  before_save :generate_random_number_uid
+  
 
 
   #before_save :set_status

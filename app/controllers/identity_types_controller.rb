@@ -61,6 +61,12 @@ class IdentityTypesController < ApplicationController
     end
   end
 
+
+  def delete
+    @identity_type = IdentityType.find(params[:identity_type_id])
+  end
+
+
   # DELETE /identity_types/1
   # DELETE /identity_types/1.json
   def destroy
@@ -76,7 +82,7 @@ class IdentityTypesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_identity_type
-      @identity_type = IdentityType.find(params[:id])
+      @identity_type = IdentityType.find_by(uid: params[:uid])
     end
 
     # Only allow a list of trusted parameters through.

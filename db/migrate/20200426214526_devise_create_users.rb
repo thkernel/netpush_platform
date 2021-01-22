@@ -7,7 +7,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       #Custom
       t.string :login
       t.references :role, foreign_key: true
-      t.string :uuid
+      t.string :uid
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""

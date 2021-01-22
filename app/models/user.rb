@@ -34,7 +34,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
            
    include PgSearch::Model
-   include SharedUtils::Generation
+   include SharedUtils::Generate
+
+  before_save :generate_random_number_uid
 
    
 
@@ -56,9 +58,6 @@ class User < ApplicationRecord
   has_many :uba_account_types, dependent: :destroy
   has_many :identity_types, dependent: :destroy
   has_many :watch_lists, dependent: :destroy
-
-
-
 
 
   

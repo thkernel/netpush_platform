@@ -1,54 +1,155 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @order_card.first_name %>
-</p>
+  <div class="container page-wrapper mg-t-80 mg-b-30">
+ 
+    <div class="row">
+      <div class="col-md-9">
+        <!-- -->
+        <div class="card shadow-base bd-0">
+          <div class="card-header bg-transparent pd-20">
+            <h6 class="card-title tx-uppercase tx-12 mg-b-0">Informations de la commande</h6>
+          </div><!-- card-header -->
+          <div class="card-body">
+           
+            <ul class="list-2-cols list-unstyled">
+              <li class="detail-address">
+                  <strong>S/N: </strong> 
+                  <span><%= @card_order.uid %></span>
+                  
+              </li>
+              <li class="detail-address">
+                  <strong>Date: </strong> 
+                  <span><%= @card_order.created_at %></span>
+                  
+              </li>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @order_card.last_name %>
-</p>
+              <li class="detail-address">
+                <strong>Civilité: </strong> 
+                <span><%= @card_order.civility %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Prénom: </strong> 
+                <span><%= @card_order.first_name %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Nom: </strong> 
+                <span><%= @card_order.last_name %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Date de naissance: </strong> 
+                <span><%= @card_order.birth_date %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Nationalité: </strong> 
+                <span><%= @card_order.nationality %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Type de pièce d'identité: </strong> 
+                <span><%= @card_order.identity_type.name %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Numéro pièce: </strong> 
+                <span><%= @card_order.identity_number %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Profession </strong> 
+                <span><%= @card_order.profession %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Adresse: </strong> 
+                <span><%= @card_order.address %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Pays: </strong> 
+                <span><%= @card_order.country %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Ville: </strong> 
+                <span><%= @card_order.city %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Téléphone mobile: </strong> 
+                <span><%= @card_order.mobile_phone_number %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Téléphone maison: </strong> 
+                <span><%= @card_order.home_phone_number %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Téléphone bureau: </strong> 
+                <span><%= @card_order.work_phone_number %></span>
+              </li>
+             
 
-<p>
-  <strong>Country:</strong>
-  <%= @order_card.country %>
-</p>
+              <li class="detail-city">
+                <strong>Type de carte: </strong> 
+                <span><%= @card_order.card_type.name %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Nom sur la carte: </strong> 
+                <span><%= @card_order.name_on_card %></span>
+              </li>
 
-<p>
-  <strong>City:</strong>
-  <%= @order_card.city %>
-</p>
+              <li class="detail-city">
+                <strong>Client UBA: </strong> 
+                <span><%= @card_order.uba_customer %></span>
+              </li>
 
-<p>
-  <strong>Address:</strong>
-  <%= @order_card.address %>
-</p>
+              <li class="detail-city">
+                <strong>Type de compte UBA: </strong> 
+                <span><%= @card_order.uba_account_type.name if @card_order.uba_account_type %></span>
+              </li>
 
-<p>
-  <strong>Phone number:</strong>
-  <%= @order_card.phone_number %>
-</p>
+              <li class="detail-city">
+                <strong>Numéro de compte UBA: </strong> 
+                <span><%= @card_order.uba_account_number %></span>
+              </li>
+              	
+						</ul>
+          </div>
 
-<p>
-  <strong>Card type:</strong>
-  <%= @order_card.card_type %>
-</p>
+          <div class="card-footer tx-12 pd-y-15 bg-transparent">
+          <%= link_to "VALIDER", validated_card_order_path(@card_order.uid), class: "btn btn-primary" %>
+          </div><!-- card-footer -->
+        </div>
+      </div>
+     
+        
 
-<p>
-  <strong>Quantity:</strong>
-  <%= @order_card.quantity %>
-</p>
+       
+      <div class="col-md-3">
+         
+        
 
-<p>
-  <strong>Status:</strong>
-  <%= @order_card.status %>
-</p>
 
-<p>
-  <strong>Note:</strong>
-  <%= @order_card.note %>
-</p>
+       
 
-<%= link_to 'Edit', edit_order_card_path(@order_card) %> |
-<%= link_to 'Back', order_cards_path %>
+         <div class="card shadow-base bd-0 mg-t-15">
+          <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+            <h6 class="card-title tx-uppercase tx-12 mg-b-0">Pièces-jointes</h6>
+            
+          </div><!-- card-header -->
+         
+            
+            <ul class="list-group">
+              <% @card_order.attachments.each do |file| %>
+                <li class="list-group-item rounded-top-0">
+                  <p class="mg-b-0">
+                    <i class="fa fa-file-text-o tx-info mg-r-8"></i>
+                    <strong class="tx-inverse tx-medium">
+                    </strong>
+                  
+                    
+                  </p>
+                </li>
+              <% end %>
+              <!-- add more here -->
+            </ul>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+

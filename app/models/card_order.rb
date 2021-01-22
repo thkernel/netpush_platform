@@ -32,7 +32,16 @@
 #
 
 class CardOrder < ApplicationRecord
+
+  include SharedUtils::Generate
+
+  before_save :generate_random_number_uid
+  
 	# For active storage
   has_many_attached :attachments
+
+  belongs_to :card_type
+  belongs_to :identity_type
+  belongs_to :uba_account_type, optional: true
 
 end

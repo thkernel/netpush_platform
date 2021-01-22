@@ -1,0 +1,11 @@
+$("ul.errors").html("");
+<% if @uba_account_type.errors.any? %>
+  <% @uba_account_type.errors.full_messages.each do |message| %>
+ 
+    $("ul.errors").append($('<div class="c-alert c-alert--danger" > ').html("<%= message.html_safe %> "));
+  <% end %>
+<% else %>
+  $(".uba-account-types").html("<%= escape_javascript(render 'index') %>");
+  $("#uba-account-type-modal").modal("hide");
+ 
+<% end %>
